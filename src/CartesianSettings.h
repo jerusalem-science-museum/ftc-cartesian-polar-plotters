@@ -1,6 +1,6 @@
 #pragma once
 
-#define MINI_SETUP true
+#define MINI_SETUP false
 
 #define X_MAX_SPEED 3000
 #define Y_MAX_SPEED 2000
@@ -28,5 +28,6 @@
 #define X_MAX_LIMIT 780
 #endif
 
+// not verified yet.
 #define CARTESIAN_X_MAZE (-200)
 #define CARTESIAN_Y_MAZE (500)
