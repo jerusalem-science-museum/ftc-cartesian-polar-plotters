@@ -23,10 +23,6 @@
 
 #define MOTORS_DISTANCE (900)  // MM distance between the motors
 
-// offset from motors to start of the canvas legal area (MM)
-#define X_OFFSET (140)
-#define Y_OFFSET (140)
-
 // calibration (metal detectors) location in mm from (top) left motor. 
 // y positive direction is down.
 #define X_HOME 450
