@@ -68,8 +68,6 @@ class PolarMode : public IMode {
             else
                 right_at_target = true;
         }
-        //  - X_OFFSET + POLAR_X_MIN_LIMIT
-        //  - Y_OFFSET + POLAR_Y_MIN_LIMIT
         Point p = calc_polar_from_xy(X_HOME, Y_HOME);
         l_left = p.x * STEPS_PER_MM;
         l_right = p.y * STEPS_PER_MM;
@@ -127,8 +125,6 @@ class PolarMode : public IMode {
 
         double w = (l1 * l1 - l2 * l2 - double(MOTORS_DISTANCE) * MOTORS_DISTANCE) / (-2 * double(MOTORS_DISTANCE));
         double h = sqrt(l2 * l2 - w * w);
-        // int x = int(w - X_OFFSET + POLAR_X_MIN_LIMIT);
-        // int y = int(h - Y_OFFSET + POLAR_Y_MIN_LIMIT);
         #if DEBUG_MODE
         Serial.println("conversion to cartesian was");
         Serial.println("cartesian");
@@ -140,7 +136,6 @@ class PolarMode : public IMode {
         Serial.print(" ");
         Serial.println(l2);
         #endif
-        // return Point{x,y};
         return Point{int(w),int(h)};
     }
 
@@ -151,7 +146,7 @@ class PolarMode : public IMode {
         int l1 = int(sqrt(h * h + w * w));
         w = w - double(MOTORS_DISTANCE);
         int l2 = int(sqrt(w * w + h * h));
-        
+    
         #if DEBUG_MODE
         Serial.println("conversion to polar was");
         Serial.println("cartesian");
@@ -241,7 +236,7 @@ class PolarMode : public IMode {
         go_to(X_HOME,Y_HOME);
     }
     
-    void go_to_start_of_maze()
+    void go_to_start_of_maze() override
     {
         go_to(X_MAZE_START,Y_MAZE_START);
     }

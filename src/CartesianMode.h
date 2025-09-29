@@ -3,7 +3,6 @@
 #include <Arduino.h>
 #include "IMode.h"
 #include "AccelStepper.h"
-#include <MultiStepper.h>
 #include "Settings.h"
 #include "CartesianSettings.h"
 
