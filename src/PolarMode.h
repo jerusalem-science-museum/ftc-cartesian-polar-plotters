@@ -68,12 +68,13 @@ class PolarMode : public IMode {
             else
                 right_at_target = true;
         }
+        Serial.println("reached switches");
+        // set the lengths to the home position.
         Point p = calc_polar_from_xy(X_HOME, Y_HOME);
         l_left = p.x * STEPS_PER_MM;
         l_right = p.y * STEPS_PER_MM;
         finish_calibrate_switches(stepper_left, l_left);
         finish_calibrate_switches(stepper_right, l_right);
-
     }
 
     void initial_move_cables_up()
@@ -92,6 +93,10 @@ class PolarMode : public IMode {
     /// @brief test if the given coords are in the legal area (defined in settings.h), with a possible margin around the legal area acting as a deadband (bc of possible jittery input).
     bool is_within_bounds(long x, long y, int margin=0)
     {
+        // if you are in the maze end area, allow it.
+        if (x > POLAR_X_END_OF_MAZE_MIN && x < POLAR_X_END_OF_MAZE_MAX && (y > POLAR_Y_MIN_LIMIT + margin) && y < POLAR_Y_END_OF_MAZE)
+            return true; // allow this area for the maze end.
+        // otherwise normal outside of bounds check.
         if (x < (POLAR_X_MIN_LIMIT + margin) || x > (POLAR_X_MAX_LIMIT - margin) || y < (POLAR_Y_MIN_LIMIT + margin) || y > (POLAR_Y_MAX_LIMIT - margin))
             return false;
         return true;
@@ -190,11 +195,15 @@ class PolarMode : public IMode {
     }
 
     bool updateEndEffector(int d_right, int d_left) override
+    /**
+     * @brief update the end effector position by changing the lengths of the cables by the given deltas (in step units).
+     * 
+     */
     {
         if(d_left == 0 && d_right == 0)
             return false;
-        long n_left = l_left + (d_left * STEPPER_STEPSIZE);
-        long n_right = l_right + (d_right * STEPPER_STEPSIZE);
+        long n_left = l_left + (d_left * POLAR_STEPPER_STEPSIZE);
+        long n_right = l_right + (d_right * POLAR_STEPPER_STEPSIZE);
         #if DEBUG_MODE
         Serial.println(n_left);
         Serial.println(n_right);

@@ -57,6 +57,21 @@ private:
         else
             was_pressed = false;
     }
+
+    void start_maze_when_press(IEncoder* enc)
+    {
+        static bool was_pressed = false;
+        if(enc->is_pressed())
+        {
+            if(!was_pressed)
+            {
+                mode->go_to_start_of_maze();
+            }
+            was_pressed = true;
+        }
+        else
+            was_pressed = false;
+    }
     
     void print_stats_when_press(IEncoder* e)
     {
@@ -125,7 +140,7 @@ public:
         else
             check_idle();
         #if !PRODUCTION_MODE
-        home_when_press(encoder1);
+        start_maze_when_press(encoder1);
         print_xy_when_press(encoder2);
         #endif
     }

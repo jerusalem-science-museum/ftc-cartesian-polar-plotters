@@ -25,8 +25,8 @@ class CartesianMode : public IMode
         {
             x = nx;
             y = ny;
-            stepper_x->moveTo(x);
-            stepper_y->moveTo(y);
+            stepper_x->moveTo(x * STEPPER_STEPSIZE);
+            stepper_y->moveTo(y * STEPPER_STEPSIZE);
             while(stepper_x->run() || stepper_y->run())
             {
                 stepper_x->run();
@@ -110,7 +110,7 @@ class CartesianMode : public IMode
             delay(2000);
             stepper_y->enableOutputs();
             Serial.println("enabled y");
-            // move to middle
+            // move to middle and set position to 0,0.
             stepper_y->moveTo(stepper_y->currentPosition() + Y_HOMING_OFFSET * STEPPER_STEPSIZE);
             stepper_y->runToPosition();
             stepper_x->setCurrentPosition(0);

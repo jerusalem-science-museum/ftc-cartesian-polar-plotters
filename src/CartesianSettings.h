@@ -19,6 +19,7 @@
 #define Y_MAX_LIMIT 200
 #define X_MAX_LIMIT 250
 #else
+// UNITS ARE IN MOTOR STEPS, NOT mm.
 #define X_HOMING_OFFSET 900
 #define Y_HOMING_OFFSET (-550)
 
@@ -29,5 +30,5 @@
 #endif
 
 // not verified yet.
-#define CARTESIAN_X_MAZE (-200)
-#define CARTESIAN_Y_MAZE (500)
+#define CARTESIAN_X_MAZE (-148)
+#define CARTESIAN_Y_MAZE (-412)
