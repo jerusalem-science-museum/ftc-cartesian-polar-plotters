@@ -1,27 +1,28 @@
 // 
-/*==========Arduino Nano pinout====== 
+/*==========Arduino Nano pinout======
  * IO map see J:\Amir Design\PCB_Design\EASYEDA JLBPCB\projects\SHIELD_V4\Shield_Amir_Shalev_V_0_0
- * Encoder A - Left, B-right 
- *                      _______
- *                 TXD-|       |-Vin 
- *                 RXD-|       |-Gnd to Display  
- *                 RST-|       |-RST
- *  To Encoders    GND-|       |-+5V To Display
- *                  D2-|       |-A7
- *                  D3-|       |-A6
- *                  D4-|       |-A5 SCL (to Display) 
- *                  D5-|       |-A4 SDA (to Display)
- *                  D6-|       |-A3 (D17) Encoder B Switch 
- *                  D7-|       |-A2 (D16) Encoder A Switch
- *                  D8-|       |-A1 (D15) Encoder B bit 0
- *  Encoder A bit 1 D9-|       |-A0 (D14) Encoder A bit 0 , mark Abort 
- *                 D10-|       |-Ref
- *                 D11-|       |-3.3V   
- * Encoder B bit 1 D12-|       |-D13
- *                      --USB--          
- *                     
- * ! Nano can use only D2, D3 as interupt -  encoder B must read by pulling                      
- * Mechanical encoder like https://www.aliexpress.com/item/1005005239756119.html 
+ * Encoder A - Left, B-right
+ *                                    _______
+ *                               TXD-|       |-Vin
+ *                               RXD-|       |-Gnd (Display)
+ *                               RST-|       |-RST
+ *                To Encoders    GND-|       |-+5V (Display)
+ *                  DIR_1_PIN     D2-|       |-A7
+ *                  DIR_2_PIN     D3-|       |-A6
+ *                                D4-|       |-A5 SCL (Display)
+ *                 STEP_1_PIN     D5-|       |-A4 SDA (Display)
+ *                 STEP_2_PIN     D6-|       |-A3 ENCODER_B_BUTTON
+ *                     UV_PIN     D7-|       |-A2 ENCODER_A_BUTTON
+ *                     EN_PIN     D8-|       |-A1 ENCODER_B_BIT_1
+ *             ENCODER_A_BIT_0    D9-|       |-A0 ENCODER_A_BIT_1
+ *          LEFT_LIMIT_SW_PIN*   D10-|       |-Ref
+ *         RIGHT_LIMIT_SW_PIN*   D11-|       |-3.3V
+ *             ENCODER_B_BIT_0   D12-|       |-D13
+ *                                    --USB--
+ *
+ * * Polar mode only (defined in PolarSettings.h)
+ * ! Nano can use only D2, D3 as interrupt - encoder B must read by polling
+ * Mechanical encoder like https://www.aliexpress.com/item/1005005239756119.html
  */ 
 
 #pragma once

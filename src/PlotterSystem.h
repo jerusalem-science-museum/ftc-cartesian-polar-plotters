@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Arduino.h>
-#include "AccelStepper.h"
 #include "RotaryEncoder.h"
 #include "Settings.h"
 #include "IEncoder.h"
@@ -9,8 +8,6 @@
 
 class PlotterSystem {
 private:
-    AccelStepper* motor1;
-    AccelStepper* motor2;
     IEncoder* encoder1;
     IEncoder* encoder2;
     IMode* mode;
@@ -112,8 +109,8 @@ private:
     }
 
 public:
-    PlotterSystem(AccelStepper* m1, AccelStepper* m2, IEncoder* e1, IEncoder* e2, IMode* md)
-    : motor1(m1), motor2(m2), encoder1(e1), encoder2(e2), mode(md), lastMovementTime(millis()) 
+    PlotterSystem(IEncoder* e1, IEncoder* e2, IMode* md)
+    : encoder1(e1), encoder2(e2), mode(md), lastMovementTime(millis()) 
     { 
         pinMode(UV_PIN, OUTPUT);
     }
@@ -132,8 +129,7 @@ public:
         #endif
 
         bool moved = mode->updateEndEffector(delta1, delta2);
-        motor1->run();
-        motor2->run();
+        mode->tick();
 
         if(moved)
             update_moved();
