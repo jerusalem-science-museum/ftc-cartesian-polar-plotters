@@ -12,6 +12,23 @@ Both are controlled by 2 rotary wheels connected to encoders. The Arduino reads 
 
 ---
 
+## Installation & Setup
+
+### Prerequisites
+
+- [VSCode](https://code.visualstudio.com/) with the [PlatformIO extension](https://platformio.org/install/ide?install=vscode)
+
+> This guide covers building via VSCode. For PlatformIO CLI usage, refer to the [PlatformIO CLI docs](https://docs.platformio.org/en/latest/core/index.html).
+
+### Install the AccelStepper Library
+
+The only external dependency is the **AccelStepper** library. Install it using one of:
+
+1. **Arduino IDE**: Open Library Manager and search for "AccelStepper"
+2. **Direct download**: https://www.arduinolibraries.info/libraries/accel-stepper
+
+The library must be placed in `~/Documents/Arduino/libraries/` (configured via `lib_extra_dirs` in `platformio.ini`).
+
 ## Hardware
 
 - **MCU**: Arduino Nano (ATmega328P)
@@ -47,22 +64,6 @@ Both are controlled by 2 rotary wheels connected to encoders. The Arduino reads 
 │ If moved → turn on UV LED, reset idle timer     │
 │ If idle  → turn off UV (3s), auto-home (60s)    │
 └─────────────────────────────────────────────────┘
-```
-
-### Polar Coordinate Math
-
-The polar plotter converts between cable lengths (l1, l2) and Cartesian coordinates (x, y) using two-circle intersection geometry. Origin (0,0) is at the top-left motor, X is positive rightward, Y is positive downward.
-
-**XY → Cable lengths:**
-```
-l1 = sqrt(y² + (MOTORS_DISTANCE - x)²)    // left cable
-l2 = sqrt(y² + x²)                        // right cable
-```
-
-**Cable lengths → XY:**
-```
-x = (l1² - l2² - d²) / (-2d)     where d = MOTORS_DISTANCE
-y = sqrt(l2² - x²)
 ```
 
 ### Boundary Enforcement
@@ -228,27 +229,19 @@ All configuration is done via `#define` constants in header files.
 
 ---
 
-## Installation & Setup
+### Polar Coordinate Math
 
-### Prerequisites
+The polar plotter converts between cable lengths (l1, l2) and Cartesian coordinates (x, y) using two-circle intersection geometry. Origin (0,0) is at the top-left motor, X is positive rightward, Y is positive downward.
 
-- [VSCode](https://code.visualstudio.com/) with the [PlatformIO extension](https://platformio.org/install/ide?install=vscode)
+**XY → Cable lengths:**
+```
+l1 = sqrt(y² + (MOTORS_DISTANCE - x)²)    // left cable
+l2 = sqrt(y² + x²)                        // right cable
+```
 
-> This guide covers building via VSCode. For PlatformIO CLI usage, refer to the [PlatformIO CLI docs](https://docs.platformio.org/en/latest/core/index.html).
+**Cable lengths → XY:**
+```
+x = (l1² - l2² - d²) / (-2d)     where d = MOTORS_DISTANCE
+y = sqrt(l2² - x²)
+```
 
-### Install the AccelStepper Library
-
-The only external dependency is the **AccelStepper** library. Install it using one of:
-
-1. **Arduino IDE**: Open Library Manager and search for "AccelStepper"
-2. **Direct download**: https://www.arduinolibraries.info/libraries/accel-stepper
-
-The library must be placed in `~/Documents/Arduino/libraries/` (configured via `lib_extra_dirs` in `platformio.ini`).
-
-### Build & Upload
-
-1. Open the project folder in VSCode
-2. PlatformIO will auto-detect the project from `platformio.ini`
-3. Click the **checkmark** icon in the PlatformIO toolbar (bottom bar) to **build**
-4. Click the **arrow** icon to **upload** to the connected Arduino Nano
-5. Click the **plug** icon to open the **serial monitor** (115200 baud)
