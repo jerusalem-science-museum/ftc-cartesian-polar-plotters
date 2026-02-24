@@ -1,4 +1,4 @@
-[Project Logs](https://docs.google.com/document/d/1Dykp1E0tP4Vg5iNTMWY0Hv9gmuN5yl5A7_C2X_2-8zA/edit?tab=t.0#heading=h.mpouvkfogwal)
+[Project Logs](https://docs.google.com/document/d/1AlCwlF5sB7dfxrVR6inSUOw-NSQJLXzD55TbnAXokts/edit?usp=sharing)
 
 # Cartesian & Polar Plotter
 
