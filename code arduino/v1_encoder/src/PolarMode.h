@@ -168,6 +168,12 @@ class PolarMode : public IMode {
     }
         
     
+    void tick() override
+    {
+        stepper_left->run();
+        stepper_right->run();
+    }
+
     void calibrate() override
     {
         #if DEBUG_MODE

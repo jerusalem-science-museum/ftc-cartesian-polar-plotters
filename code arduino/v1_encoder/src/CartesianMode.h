@@ -79,6 +79,12 @@ class CartesianMode : public IMode
             return true;
         }
 
+        void tick() override
+        {
+            stepper_x->run();
+            stepper_y->run();
+        }
+
         void calibrate() override
         {
             // Serial.println("not calibrating now");
