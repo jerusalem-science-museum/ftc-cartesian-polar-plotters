@@ -15,8 +15,10 @@ PolarMode mode = PolarMode(&stepper_1, &stepper_2);
 #else
 CartesianMode mode = CartesianMode(&stepper_1, &stepper_2);
 #endif
-RotaryEncoder encoder_1 = RotaryEncoder(ENCODER_A_BIT_0, ENCODER_A_BIT_1, ENCODER_A_BUTTON);
-RotaryEncoder encoder_2 = RotaryEncoder(ENCODER_B_BIT_0, ENCODER_B_BIT_1, ENCODER_B_BUTTON);
+
+RotaryEncoder encoder_1 = RotaryEncoder(MAGNETIC_SENS_A);
+RotaryEncoder encoder_2 = RotaryEncoder(MAGNETIC_SENS_B);
+
 PlotterSystem p = PlotterSystem(&stepper_1, &stepper_2, &encoder_1, &encoder_2, &mode);
 
 void setup()
@@ -30,5 +32,7 @@ void setup()
 
 void loop()
 {
+    
     p.loop();
+    
 }

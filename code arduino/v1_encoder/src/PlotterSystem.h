@@ -125,8 +125,9 @@ public:
         #if ENCODER_DEBUG
         if(delta1 != 0 || delta2 != 0)
         {
-            Serial.print("system got from encoder: ");
+            Serial.print("system got from encoder A: ");
             Serial.println(delta1);
+            Serial.print("system got from encoder B: ");
             Serial.println(delta2);   
         }
         #endif
