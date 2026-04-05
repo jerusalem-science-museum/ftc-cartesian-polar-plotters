@@ -1,6 +1,8 @@
 #include <Wire.h>
 #include <AS5600.h>
 #define ONLY_OUT 1
+
+#define OUT_ANALOG A0
 AS5600 as5600;
 
 void setup() {
@@ -74,7 +76,7 @@ void show_angle_i2c(){
 }
 
 void show_angle_out(){
-  int raw = analogRead(A0);
+  int raw = analogRead(OUT_ANALOG);
   float deg = (raw * 360.0) / 1024.0;
 
   Serial.print("Read from out: ");
