@@ -26,7 +26,7 @@
 
 #pragma once
 
-#define USE_POLAR_MODE true
+#define USE_POLAR_MODE false
 
 #define ENABLE_SOFT_LIMIT true
 
