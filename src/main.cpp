@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <AccelStepper.h>
-#include "RotaryEncoder.h"
+#include "MagneticEncoder.h"
 #include "IMode.h"
 #include "PolarMode.h"
 #include "CartesianMode.h"
@@ -16,10 +16,10 @@ PolarMode mode = PolarMode(&stepper_1, &stepper_2);
 CartesianMode mode = CartesianMode(&stepper_1, &stepper_2);
 #endif
 
-RotaryEncoder encoder_1 = RotaryEncoder(MAGNETIC_SENS_A);
-RotaryEncoder encoder_2 = RotaryEncoder(MAGNETIC_SENS_B);
+MagneticEncoder encoder_1 = MagneticEncoder(MAGNETIC_SENS_A);
+MagneticEncoder encoder_2 = MagneticEncoder(MAGNETIC_SENS_B);
 
-PlotterSystem p = PlotterSystem(&stepper_1, &stepper_2, &encoder_1, &encoder_2, &mode);
+PlotterSystem p = PlotterSystem(&encoder_1, &encoder_2, &mode);
 
 void setup()
 {

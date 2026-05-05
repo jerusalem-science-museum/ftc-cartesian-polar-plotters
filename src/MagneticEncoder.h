@@ -4,7 +4,32 @@
 #include "IEncoder.h"
 #include "Settings.h"
 
-class RotaryEncoder : public IEncoder
+/*==========Arduino Nano pinout====== 
+ * IO map see J:\Amir Design\PCB_Design\EASYEDA JLBPCB\projects\SHIELD_V4\Shield_Amir_Shalev_V_0_0
+ * Encoder A - Left, B-right 
+ *                      _______
+ *                 TXD-|       |-Vin 
+ *                 RXD-|       |-Gnd 
+ *                 RST-|       |-RST
+ *                 GND-|       |-+5V 
+ *       DIR_1_PIN  D2-|       |-A7 MAGNETIC_SENS_A
+ *       DIR_2_PIN  D3-|       |-A6 MAGNETIC_SENS_B
+ *                  D4-|       |-A5 
+ *      STEP_1_PIN  D5-|       |-A4 
+ *      STEP_2_PIN  D6-|       |-A3 
+ *          UV_PIN  D7-|       |-A2 
+ *          EN_PIN  D8-|       |-A1 
+ *  Encoder A bit 1 D9-|       |-A0 t 
+ *                 D10-|       |-Ref
+ *                 D11-|       |-3.3V   
+ * Encoder B bit 1 D12-|       |-D13
+ *                      --USB--          
+ *                     
+ * ! Nano can use only D2, D3 as interupt -  encoder B must read by pulling                      
+ * Mechanical encoder like https://www.aliexpress.com/item/1005005239756119.html 
+ */ 
+
+class MagneticEncoder : public IEncoder
 {
   private:
     const int out_pin_;   // ==> AS5600 OUT (analog pin)
