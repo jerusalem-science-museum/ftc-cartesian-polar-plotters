@@ -14,13 +14,13 @@ Both are controlled by 2 rotary wheels connected to encoders. The Arduino reads 
 
 ## Installation & Setup
 
-### Prerequisites
+### 1. Prerequisites
 
 - [VSCode](https://code.visualstudio.com/) with the [PlatformIO extension](https://platformio.org/install/ide?install=vscode)
 
 > This guide covers building via VSCode. For PlatformIO CLI usage, refer to the [PlatformIO CLI docs](https://docs.platformio.org/en/latest/core/index.html).
 
-### Install the AccelStepper Library
+### 2. Install the AccelStepper Library
 
 The only external dependency is the **AccelStepper** library. Install it using one of:
 
@@ -28,6 +28,10 @@ The only external dependency is the **AccelStepper** library. Install it using o
 2. **Direct download**: https://www.arduinolibraries.info/libraries/accel-stepper
 
 The library must be placed in `~/Documents/Arduino/libraries/` (configured via `lib_extra_dirs` in `platformio.ini`).
+
+### 3. Update System Params
+According to the system you're installing, choose USE_POLAR_MODE as TRUE or FALSE accordingly.  
+see [here](https://github.com/jerusalem-science-museum/ftc-cartesian-polar-plotters#compile-time-flags-settingsh)
 
 ## Hardware
 
