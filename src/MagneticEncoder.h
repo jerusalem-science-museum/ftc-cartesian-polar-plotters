@@ -113,12 +113,12 @@ class MagneticEncoder : public IEncoder
       if (turn_accum_deg_ >= AS5600_ANGLE_PER_CLICK_DEG)
       {
         turn_accum_deg_ -= AS5600_ANGLE_PER_CLICK_DEG;
-        return +4;
+        return +1;
       }
       if (turn_accum_deg_ <= -AS5600_ANGLE_PER_CLICK_DEG)
       {
         turn_accum_deg_ += AS5600_ANGLE_PER_CLICK_DEG;
-        return -4;
+        return -1;
       }
 
       return 0;
