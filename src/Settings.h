@@ -35,17 +35,23 @@
 #define ENCODER_DEBUG false
 
 // STEPPERS CONFIGURATIONS
-#define DIR_1_PIN 2
-#define DIR_2_PIN 3
 #define STEP_1_PIN 5
 #define STEP_2_PIN 6
-
+#define DIR_1_PIN 2
+#define DIR_2_PIN 3
 #define EN_PIN 8 // common enable pin for both motors.
 
 // ENCODERS CONFIGURATIONS
+#define ENCODER_A_BIT_1 (A0) // input IO for gray code bit 0 
+#define ENCODER_A_BIT_0 (9) // input IO for gray code bit 1
+#define ENCODER_B_BIT_1 (A1) // input IO for gray code bit 0
+#define ENCODER_B_BIT_0 (12) // input IO for gray code bit 1
+#define ENCODER_A_BUTTON (A2)
+#define ENCODER_B_BUTTON (A3)
+#define ENCODER_READ_INTERVAL 200 //microseconds
+// MAGNETIC ENCODER CONFIGURATIONS
 #define MAGNETIC_SENS_B (A6) // input IO for gray code bit 0 
 #define MAGNETIC_SENS_A (A7) // input IO for gray code bit 0
-#define ENCODER_READ_INTERVAL 200 //microseconds
 
 //UV LED CONFIGURATIONS
 #define UV_PIN 7
